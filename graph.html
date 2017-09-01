@@ -1,0 +1,127 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript">
+    
+    // Load the Visualization API and the piechart package.
+    google.charts.load('current', {'packages':['corechart']});
+      
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.charts.setOnLoadCallback(drawChart);
+      
+    function drawChart() {
+      var jsonData = $.ajax({
+          url: "getData.php",
+          dataType: "json",
+          async: false
+          }).responseText;
+          
+      // Create our data table out of JSON data loaded from server.
+      var data = new google.visualization.DataTable(jsonData);
+
+      // Instantiate and draw our chart, passing in some options.
+      var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+      chart.draw(data, {width: 400, height: 240});
+    }
+
+    </script>
+
+	<script type="text/javascript">
+      google.charts.load('current', {'packages':['timeline']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var container = document.getElementById('timeline-tooltip');
+        var chart = new google.visualization.Timeline(container);
+        var dataTable = new google.visualization.DataTable();
+
+        dataTable.addColumn({ type: 'string', id: 'President' });
+        dataTable.addColumn({ type: 'string', id: 'dummy bar label' });
+        dataTable.addColumn({ type: 'string', role: 'tooltip' });
+        dataTable.addColumn({ type: 'date', id: 'Start' });
+        dataTable.addColumn({ type: 'date', id: 'End' });
+        dataTable.addRows([
+          [ 'Brian', null, '012345', new Date(1789, 3, 29), new Date(1797, 2, 3) ],
+          [ 'Joanthan', null, '765243', new Date(1797, 2, 3),  new Date(1801, 2, 3) ],
+          [ 'Ted', null, '378814', new Date(1801, 2, 3),  new Date(1809, 2, 3) ]]);
+
+        chart.draw(dataTable);
+      }
+    </script>
+	
+	   <script type="text/javascript">
+      google.charts.load('current', {'packages':['timeline']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var container = document.getElementById('timeline-tooltip1');
+        var chart = new google.visualization.Timeline(container);
+        var dataTable = new google.visualization.DataTable();
+
+        dataTable.addColumn({ type: 'string', id: 'President' });
+        dataTable.addColumn({ type: 'string', id: 'dummy bar label' });
+        dataTable.addColumn({ type: 'string', role: 'tooltip' });
+        dataTable.addColumn({ type: 'date', id: 'Start' });
+        dataTable.addColumn({ type: 'date', id: 'End' });
+        dataTable.addRows([
+          [ 'Aisle1', null, 'George', new Date(1789, 3, 29), new Date(1797, 2, 3) ],
+          [ 'Aisle2', null, 'John', new Date(1797, 2, 3),  new Date(1801, 2, 3) ],
+		  [ 'Aisle3', null, 'John', new Date(1797, 2, 3),  new Date(1801, 2, 3) ],
+		  [ 'Aisle4', null, 'John', new Date(1797, 2, 3),  new Date(1801, 2, 3) ],
+		  [ 'Aisle5', null, 'John', new Date(1797, 2, 3),  new Date(1801, 2, 3) ],
+          [ 'Aisle6', null, 'Thomas', new Date(1801, 2, 3),  new Date(1809, 2, 3) ]]);
+
+        chart.draw(dataTable);
+      }
+    </script>
+	
+	 <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Language', 'Speakers (in millions)'],
+          ['Assamese', 13], ['Bengali', 83], ['Bodo', 1.4],
+          ['Dogri', 2.3], ['Gujarati', 46], ['Hindi', 300],
+          ['Kannada', 38], ['Kashmiri', 5.5], ['Konkani', 5],
+          ['Maithili', 20], ['Malayalam', 33], ['Manipuri', 1.5],
+          ['Marathi', 72], ['Nepali', 2.9], ['Oriya', 33],
+          ['Punjabi', 29], ['Sanskrit', 0.01], ['Santhali', 6.5],
+          ['Sindhi', 2.5], ['Tamil', 61], ['Telugu', 74], ['Urdu', 52]
+        ]);
+
+        var options = {
+          title: 'Indian Language Use',
+          legend: 'none',
+          pieSliceText: 'label',
+          slices: {  4: {offset: 0.2},
+                    12: {offset: 0.3},
+                    14: {offset: 0.4},
+                    15: {offset: 0.5},
+          },
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+      }
+    </script>
+
+  </head>
+  <body>
+Time in Store:
+    <div id="timeline-tooltip" style="height: 180px;"></div>
+	
+Time per aisle for customer (012345):
+	
+	<div id="timeline-tooltip1" style="height: 360px;"></div>
+	
+Most Popular Areas:
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+	
+From json:
+	<div id="chart_div"></div>
+
+  </body>
+</html>
