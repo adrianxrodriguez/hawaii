@@ -1,0 +1,13 @@
+{
+  "cols": [
+        {"id":"","label":"Location","pattern":"","type":"string"},
+        {"id":"","label":"Amount","pattern":"","type":"number"}
+      ],
+  "rows": [
+        {"c":[{"v":"Aisle1","f":null},{"v":3,"f":null}]},
+        {"c":[{"v":"Aisle2","f":null},{"v":1,"f":null}]},
+        {"c":[{"v":"Produce","f":null},{"v":1,"f":null}]},
+        {"c":[{"v":"Deli","f":null},{"v":1,"f":null}]},
+        {"c":[{"v":"Aisle3","f":null},{"v":2,"f":null}]}
+      ]
+}
